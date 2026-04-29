@@ -97,6 +97,7 @@ export const getServerSideProps = withIronSessionSsr(
                 ))}
             </section>
 
+
             <section>
           <h2>Keywords</h2>
           <input
@@ -104,7 +105,6 @@ export const getServerSideProps = withIronSessionSsr(
             value={keywordInput}
             onChange={(e) => setKeywordInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && addKeyword()}
-            placeholder="e.g. artificial intelligence"
           />
           <button onClick={addKeyword}>Add</button>
           <ul>
@@ -123,7 +123,6 @@ export const getServerSideProps = withIronSessionSsr(
             value={sourceInput}
             onChange={(e) => setSourceInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && addSource()}
-            placeholder="e.g. bbc-news"
           />
           <button onClick={addSource}>Add</button>
           <ul>
@@ -132,11 +131,12 @@ export const getServerSideProps = withIronSessionSsr(
                 {src} <button onClick={() => removeSource(src)}>Remove</button>
               </li>
             ))}
-          </ul>
-        </section>
+
+        </ul>
+      </section>
  
         <button onClick={handleSave}>Save Preferences</button>
-        {status && <p>{status}</p>}
+           {status && <p>{status}</p>}
       </main>
     </div>
   );
