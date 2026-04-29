@@ -3,7 +3,7 @@ import { Schema, model, models } from 'mongoose'
 const PreferenceSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'Users',
+    ref: 'User',
     required: true,
     unique: true
   },
