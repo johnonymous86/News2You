@@ -86,7 +86,7 @@ export const getServerSideProps = withIronSessionSsr(
             <h1>Your Preferences</h1>
 
             <section>
-                <p>TOPICS</p>
+                <h2>TOPICS</h2>
                 {AVAILABLE_TOPICS.map((topic) =>(
                     <label key={topic}>
                         <input
@@ -98,6 +98,45 @@ export const getServerSideProps = withIronSessionSsr(
                         </label>
                 ))}
             </section>
+
+            <section>
+                <h2>KEYWORDS</h2>
+                <input
+                type="text"
+                value={sourceInput}
+                onChange={(e) => setSourceInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addSource()}
+                />
+                <button onclick={addKeyword}>Add</button>
+                <ul>
+                    {keywords.map((kw) => (
+                        <li key={kw}>
+                            {kw <button onClick={() => removeKeyword(kw)}>Remove</button>}
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section>
+                <h2>SOURCES</h2>
+                <input
+                type="text"
+                value={sourceInput}
+                onChange={(e) => setSourceInput(e.target.value)}
+                onKeyDown={(e) => e.key ==="Enter" && addSource()}
+                />
+                <button onClick={addSource}>Add</button>
+                <ul>
+                    {sources.map((src) => (
+                        <li key={src}>
+                            {src} <button onClick={() => removeSource(src)}>Remove</button>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <button onClick={handleSave}>Save Preferences</button>
+            {status && <p>{status}</p>}
         </main>
     </div>
-  )
+  );
