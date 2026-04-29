@@ -23,5 +23,8 @@ export default withIronSessionApiRoute(
 async function getPreferences(req, res, user) {
     try {
         const preference = await getByUserId(user._id)
+        res.status(200).json(preference || { topics: [], keywords: [], sources: [], })
+    } catch (err) {
+        res.status(500).json({ error: err.message})
     }
 }
