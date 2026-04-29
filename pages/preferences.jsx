@@ -100,43 +100,46 @@ export const getServerSideProps = withIronSessionSsr(
             </section>
 
             <section>
-                <h2>KEYWORDS</h2>
-                <input
-                type="text"
-                value={sourceInput}
-                onChange={(e) => setSourceInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && addSource()}
-                />
-                <button onclick={addKeyword}>Add</button>
-                <ul>
-                    {keywords.map((kw) => (
-                        <li key={kw}>
-                            {kw <button onClick={() => removeKeyword(kw)}>Remove</button>}
-                        </li>
-                    ))}
-                </ul>
-            </section>
-
-            <section>
-                <h2>SOURCES</h2>
-                <input
-                type="text"
-                value={sourceInput}
-                onChange={(e) => setSourceInput(e.target.value)}
-                onKeyDown={(e) => e.key ==="Enter" && addSource()}
-                />
-                <button onClick={addSource}>Add</button>
-                <ul>
-                    {sources.map((src) => (
-                        <li key={src}>
-                            {src} <button onClick={() => removeSource(src)}>Remove</button>
-                        </li>
-                    ))}
-                </ul>
-            </section>
-
-            <button onClick={handleSave}>Save Preferences</button>
-            {status && <p>{status}</p>}
-        </main>
+          <h2>Keywords</h2>
+          <input
+            type="text"
+            value={keywordInput}
+            onChange={(e) => setKeywordInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && addKeyword()}
+            placeholder="e.g. artificial intelligence"
+          />
+          <button onClick={addKeyword}>Add</button>
+          <ul>
+            {keywords.map((kw) => (
+              <li key={kw}>
+                {kw} <button onClick={() => removeKeyword(kw)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+        </section>
+ 
+        <section>
+          <h2>Sources</h2>
+          <input
+            type="text"
+            value={sourceInput}
+            onChange={(e) => setSourceInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && addSource()}
+            placeholder="e.g. bbc-news"
+          />
+          <button onClick={addSource}>Add</button>
+          <ul>
+            {sources.map((src) => (
+              <li key={src}>
+                {src} <button onClick={() => removeSource(src)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+        </section>
+ 
+        <button onClick={handleSave}>Save Preferences</button>
+        {status && <p>{status}</p>}
+      </main>
     </div>
   );
+}
