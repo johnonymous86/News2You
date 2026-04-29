@@ -26,8 +26,9 @@ export const getServerSideProps = withIronSessionSsr(
     const [topics, setTopics] = useState([]);
     const [keywords, setKeywords] = useState([]);
     const [sources, setSources] = useState([]);
-    const [kewordInput, setKeywordInput] = useState([]);
-    const [status, setStatus] = useState([]);
+    const [kewordInput, setKeywordInput] = useState("");
+    const [sourceInput, setSourceInput] = useState("");
+    const [status, setStatus] = useState("");
 
     function toggleTopic(topic) {
         setTopics((prev) =>
