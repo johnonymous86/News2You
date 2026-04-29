@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { withIronSessionApiRoute, withIronSessionSsr } from "iron-session/next";
-import sessionsOptions from "../config/session";
-import Header from "../components/header";
+import { withIronSessionSsr } from "iron-session/next";
 
 export const getServerSideProps = withIronSessionSsr(
     async function getServerSideProps({ req }) {
