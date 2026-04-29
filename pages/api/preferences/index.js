@@ -1,7 +1,7 @@
 import { withIronSessionApiRoute } from "iron-session/next"
 import sessionOptions from "../../../config/session"
 import { getByUserId } from "../../../db/preference"
-import session from "../../../config/session"
+
 
 export default withIronSessionApiRoute(
     async function handler(req, res) {
@@ -19,3 +19,9 @@ export default withIronSessionApiRoute(
     },
     sessionOptions
 )
+
+async function getPreferences(req, res, user) {
+    try {
+        const preference = await getByUserId(user._id)
+    }
+}
