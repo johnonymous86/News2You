@@ -28,3 +28,11 @@ async function getPreferences(req, res, user) {
         res.status(500).json({ error: err.message})
     }
 }
+
+async function savePreferences(req, res, user) {
+    try{
+        const { topics = [], keywords = [], sources = [] }
+        const preference = await upsert(user._id, { topics, keywords, sources })
+        res.status(200).json(preference)
+    }
+}
