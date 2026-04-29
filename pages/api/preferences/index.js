@@ -31,7 +31,7 @@ async function getPreferences(req, res, user) {
 
 async function savePreferences(req, res, user) {
     try{
-        const { topics = [], keywords = [], sources = [] }
+        const { topics = [], keywords = [], sources = [] } = req.body
         const preference = await upsert(user._id, { topics, keywords, sources })
         res.status(200).json(preference)
     } catch (err) {
