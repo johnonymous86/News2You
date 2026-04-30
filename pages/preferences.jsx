@@ -33,9 +33,12 @@ export default function Preferences({ user, isLoggedIn }) {
   const {
     state,
     toggleTopic,
-    addTag,
-    removeTag,
-    setInput,
+    addKeyword,
+    removeKeyword,
+    addSource,
+    removeSource,
+    setKeywordInput,
+    setSourceInput,
     handleKeyPress,
     handleSave,
   } = usePreferences();
@@ -72,17 +75,17 @@ export default function Preferences({ user, isLoggedIn }) {
             <input
               type="text"
               value={state.keywordInput}
-              onChange={(e) => setInput("keywordInput", e.target.value)}
-              onKeyDown={(e) => handleKeyPress(e, () => addTag("keywords", "keywordInput", state.keywordInput))}
+              onChange={(e) => setKeywordInput(e.target.value)}
+              onKeyDown={(e) => handleKeyPress(e, addKeyword)}
               placeholder="e.g. artificial intelligence"
             />
-            <button onClick={() => addTag("keywords", "keywordInput", state.keywordInput)}>Add</button>
+            <button onClick={addKeyword}>Add</button>
           </div>
           <ul>
             {state.keywords.map((kw) => (
               <li key={kw}>
                 {kw}
-                <button onClick={() => removeTag("keywords", kw)}>Remove</button>
+                <button onClick={() => removeKeyword(kw)}>Remove</button>
               </li>
             ))}
           </ul>
@@ -94,17 +97,17 @@ export default function Preferences({ user, isLoggedIn }) {
             <input
               type="text"
               value={state.sourceInput}
-              onChange={(e) => setInput("sourceInput", e.target.value)}
-              onKeyDown={(e) => handleKeyPress(e, () => addTag("sources", "sourceInput", state.sourceInput))}
+              onChange={(e) => setSourceInput(e.target.value)}
+              onKeyDown={(e) => handleKeyPress(e, addSource)}
               placeholder="e.g. bbc-news"
             />
-            <button onClick={() => addTag("sources", "sourceInput", state.sourceInput)}>Add</button>
+            <button onClick={addSource}>Add</button>
           </div>
           <ul>
             {state.sources.map((src) => (
               <li key={src}>
                 {src}
-                <button onClick={() => removeTag("sources", src)}>Remove</button>
+                <button onClick={() => removeSource(src)}>Remove</button>
               </li>
             ))}
           </ul>

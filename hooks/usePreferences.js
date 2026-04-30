@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from "react";
+import { useRouter } from "next/router";
 
 const initialState = {
   topics: [],
@@ -6,7 +7,6 @@ const initialState = {
   sources: [],
   keywordInput: "",
   sourceInput: "",
-  status: "",
   loading: true,
 };
 
@@ -27,26 +27,18 @@ function reducer(state, action) {
           ? state.topics.filter((t) => t !== action.topic)
           : [...state.topics, action.topic],
       };
+    case "SET_INPUT":
+      return { ...state, [action.field]: action.value };
     case "ADD_TAG":
       return {
         ...state,
         [action.list]: [...state[action.list], action.value],
-        [action.input]: "",
+        [action.inputField]: "",
       };
     case "REMOVE_TAG":
       return {
         ...state,
         [action.list]: state[action.list].filter((item) => item !== action.value),
-      };
-    case "SET_INPUT":
-      return {
-        ...state,
-        [action.field]: action.value,
-      };
-    case "SET_STATUS":
-      return {
-        ...state,
-        status: action.status,
       };
     default:
       return state;
@@ -55,6 +47,7 @@ function reducer(state, action) {
 
 export default function usePreferences() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const router = useRouter();
 
   useEffect(() => {
     async function loadPreferences() {
@@ -63,41 +56,51 @@ export default function usePreferences() {
         const data = await res.json();
         dispatch({
           type: "LOAD_PREFERENCES",
-          topics: data.topics || [],
-          keywords: data.keywords || [],
-          sources: data.sources || [],
+          topics: data.topics,
+          keywords: data.keywords,
+          sources: data.sources,
         });
       } catch (err) {
+        console.error("Error loading preferences:", err);
         dispatch({ type: "LOAD_PREFERENCES", topics: [], keywords: [], sources: [] });
       }
     }
     loadPreferences();
   }, []);
 
-  function handleKeyPress(e, callback) {
-    if (e.key === "Enter") callback();
+  function addKeyword() {
+    const trimmed = state.keywordInput.trim();
+    if (!trimmed || state.keywords.includes(trimmed)) return;
+    dispatch({ type: "ADD_TAG", list: "keywords", inputField: "keywordInput", value: trimmed });
   }
 
-  function addTag(list, input, value) {
-    const trimmed = value.trim();
-    if (!trimmed || state[list].includes(trimmed)) return;
-    dispatch({ type: "ADD_TAG", list, input, value: trimmed });
+  function removeKeyword(value) {
+    dispatch({ type: "REMOVE_TAG", list: "keywords", value });
   }
 
-  function removeTag(list, value) {
-    dispatch({ type: "REMOVE_TAG", list, value });
+  function addSource() {
+    const trimmed = state.sourceInput.trim();
+    if (!trimmed || state.sources.includes(trimmed)) return;
+    dispatch({ type: "ADD_TAG", list: "sources", inputField: "sourceInput", value: trimmed });
+  }
+
+  function removeSource(value) {
+    dispatch({ type: "REMOVE_TAG", list: "sources", value });
   }
 
   function toggleTopic(topic) {
     dispatch({ type: "TOGGLE_TOPIC", topic });
   }
 
-  function setInput(field, value) {
-    dispatch({ type: "SET_INPUT", field, value });
+  function setKeywordInput(value) {
+    dispatch({ type: "SET_INPUT", field: "keywordInput", value });
+  }
+
+  function setSourceInput(value) {
+    dispatch({ type: "SET_INPUT", field: "sourceInput", value });
   }
 
   async function handleSave() {
-    dispatch({ type: "SET_STATUS", status: "" });
     try {
       const res = await fetch("/api/preferences", {
         method: "POST",
@@ -109,23 +112,24 @@ export default function usePreferences() {
         }),
       });
       if (res.ok) {
-        dispatch({ type: "SET_STATUS", status: "Preferences saved!" });
+        router.push("/feed");
       } else {
-        const { error } = await res.json();
-        dispatch({ type: "SET_STATUS", status: `Error: ${error}` });
+        console.error("Error saving preferences:", await res.json());
       }
     } catch (err) {
-      dispatch({ type: "SET_STATUS", status: "Something went wrong." });
+      console.error("Error saving preferences:", err);
     }
   }
 
   return {
     state,
     toggleTopic,
-    addTag,
-    removeTag,
-    setInput,
-    handleKeyPress,
+    addKeyword,
+    removeKeyword,
+    addSource,
+    removeSource,
+    setKeywordInput,
+    setSourceInput,
     handleSave,
   };
 }
