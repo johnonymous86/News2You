@@ -3,6 +3,7 @@ import Link from "next/link";
 import { withIronSessionSsr } from "iron-session/next";
 import sessionOptions from "../config/session";
 import Header from "../components/header";
+import Nav from "../components/nav";
 
 const initialState = {
   articles: [],
@@ -109,6 +110,7 @@ export default function Feed({ user, isLoggedIn }) {
   return (
     <div>
       <Header isLoggedIn={isLoggedIn} username={user.username} />
+      <Nav />
 
       <main>
         <h1>Your NEWS Feed</h1>
@@ -118,7 +120,7 @@ export default function Feed({ user, isLoggedIn }) {
         {!state.loading && !state.error && state.articles.length === 0 && (
           <p>
             {state.message || "We can't find anything."}{" "}
-            <Link href="/preferences">Update your article preferences.</Link>
+            <Link href="/preferences">Update your preferences.</Link>
           </p>
         )}
 
