@@ -30,7 +30,8 @@ export const getServerSideProps = withIronSessionSsr(
 
     function toggleTopic(topic) {
         setTopics((prev) =>
-            prev.includes(topic) ? prev.filter((t) => !== topic) : [...prev, topic]
+            prev.includes(topic) 
+        ? prev.filter((t) => t !== topic) : [...prev, topic]
         );
     }
     
@@ -77,66 +78,78 @@ export const getServerSideProps = withIronSessionSsr(
 
 
   return (
-    <div>
-        <Header isLoggedIn={isLoggedIn} username={user.username} />
+    <div className="preferences-page">
+      <Header isLoggedIn={isLoggedIn} username={user.username} />
+ 
+      <main className="preferences-main">
+        <h1 className="preferences-title">Your Preferences</h1>
+ 
+        <section className="preferences-section">
+          <h2 className="preferences-section-title">Topics</h2>
+          <div className="topics-list">
+            {AVAILABLE_TOPICS.map((topic) => (
+              <label key={topic} className="topic-label">
+                <input
+                  className="topic-checkbox"
+                  type="checkbox"
+                  checked={topics.includes(topic)}
+                  onChange={() => toggleTopic(topic)}
+                />
+                {topic}
+              </label>
+            ))}
+          </div>
+        </section>
 
-        <main>
-            <h1>Your Preferences</h1>
 
-            <section>
-                <h2>TOPICS</h2>
-                {AVAILABLE_TOPICS.map((topic) =>(
-                    <label key={topic}>
-                        <input
-                        type="checkbox"
-                        checked={topics.includes(topic)}
-                        onChange={() => toggleTopic(topic)}
-                        />
-                        {topic}
-                        </label>
-                ))}
-            </section>
-
-
-            <section>
-          <h2>Keywords</h2>
-          <input
-            type="text"
-            value={keywordInput}
-            onChange={(e) => setKeywordInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && addKeyword()}
-          />
-          <button onClick={addKeyword}>Add</button>
-          <ul>
+            <section className="preferences-section">
+          <h2 className="preferences-section-title">Keywords</h2>
+          <div className="input-row">
+            <input
+              className="preferences-input"
+              type="text"
+              value={keywordInput}
+              onChange={(e) => setKeywordInput(e.target.value)}
+              onKeyDown={(e) => handleKeyPress(e, addKeyword)}
+              placeholder="e.g. artificial intelligence"
+            />
+            <button className="add-btn" onClick={addKeyword}>Add</button>
+          </div>
+          <ul className="tag-list">
             {keywords.map((kw) => (
-              <li key={kw}>
-                {kw} <button onClick={() => removeKeyword(kw)}>Remove</button>
+              <li key={kw} className="tag-item">
+                {kw}
+                <button className="remove-btn" onClick={() => removeKeyword(kw)}>Remove</button>
               </li>
             ))}
           </ul>
         </section>
  
-        <section>
-          <h2>Sources</h2>
-          <input
-            type="text"
-            value={sourceInput}
-            onChange={(e) => setSourceInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && addSource()}
-          />
-          <button onClick={addSource}>Add</button>
-          <ul>
+        <section className="preferences-section">
+          <h2 className="preferences-section-title">Sources</h2>
+          <div className="input-row">
+            <input
+              className="preferences-input"
+              type="text"
+              value={sourceInput}
+              onChange={(e) => setSourceInput(e.target.value)}
+              onKeyDown={(e) => handleKeyPress(e, addSource)}
+              placeholder="e.g. bbc-news"
+            />
+            <button className="add-btn" onClick={addSource}>Add</button>
+          </div>
+          <ul className="tag-list">
             {sources.map((src) => (
-              <li key={src}>
-                {src} <button onClick={() => removeSource(src)}>Remove</button>
+              <li key={src} className="tag-item">
+                {src}
+                <button className="remove-btn" onClick={() => removeSource(src)}>Remove</button>
               </li>
             ))}
-
-        </ul>
-      </section>
+          </ul>
+        </section>
  
-        <button onClick={handleSave}>Save Preferences</button>
-           {status && <p>{status}</p>}
+      <button className="save-btn" onClick={handleSave}>Save Preferences</button>
+      {status && <p className="status-message">{status}</p>}
       </main>
     </div>
   );

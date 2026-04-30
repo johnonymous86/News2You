@@ -14,6 +14,6 @@ export async function upsert(userId, { topics, keywords, sources }) {
         { topics, keywords, sources },
         { new: true, upsert: true, runValidators: true }
     ).lean()
-    if (!preference) throw new Error('Error saving preferences! Please try again')
+    if (!preference) throw new Error('Error saving your preferences! Please try again')
     return preference
 }
