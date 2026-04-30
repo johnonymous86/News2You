@@ -21,8 +21,8 @@ export async function markAsRead(id, userId) {
       { isRead: true },
       { new: true }
     ).lean()
-    if (article) throw new Error('Article not found')
-    return !article
+    if (!article) throw new Error('Article not found')
+    return article
   }
 
 export async function remove(id, userId) {
