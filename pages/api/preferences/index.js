@@ -11,7 +11,7 @@ export default withIronSessionApiRoute(
         switch (req.method) {
             case "GET":
                 return getPreferences(req, res, user)
-                case "POST"
+                case "POST":
                 return savePreferences(req, res, user)
                 default:
                     return res.status(405).end()
