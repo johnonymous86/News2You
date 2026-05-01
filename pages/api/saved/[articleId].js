@@ -1,6 +1,6 @@
 import { withIronSessionApiRoute } from 'iron-session/next'
-import sessionOptions from '../../../../config/session'
-import { updateArticle, deleteArticle } from '../../../../controllers/cont_article'
+import sessionOptions from '../../../config/session'
+import { updateArticle, deleteArticle } from '../../../controllers/cont_article'
 
 export default withIronSessionApiRoute(
   async function handler(req, res) {
