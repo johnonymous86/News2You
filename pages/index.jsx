@@ -42,20 +42,16 @@ export default function Home(props) {
         </h1>
         <p><i>Your custom curated news feed.</i></p>
 
-        <p className={styles.description}>
-        
-          Status:{" "}
-          <code className={styles.code}>
-            {!props.isLoggedIn && " Not"} Logged In
-          </code>
-        </p>
-
         <div className={styles.grid}>
           {props.isLoggedIn ? (
             <>
-              <Link href="/dashboard" className={styles.card}>
-                <h2>Dashboard &rarr;</h2>
+              <Link href="/feed" className={styles.card}>
+                <h2>News2You Feed &rarr;</h2>
                 <p>View your preferences and find news.</p>
+              </Link>
+              <Link href="/preferences" className={styles.card}>
+                <h2>Pick Your Favorites &rarr;</h2>
+                <p>Go here to set your article filters.</p>
               </Link>
               <div
                 onClick={logout}
