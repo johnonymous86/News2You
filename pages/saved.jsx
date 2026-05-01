@@ -109,7 +109,7 @@ export default function Saved({ user, isLoggedIn }) {
         {state.loading && <p>Loading...</p>}
         {state.error && <p>{state.error}</p>}
         {!state.loading && !state.error && state.articles.length === 0 && (
-          <p>No saved articles yet.</p>
+          <p>You haven't saved any articles yet. Better get to it!.</p>
         )}
 
         <ul>

@@ -23,3 +23,12 @@ a {
     background: darkslategray;
   }
 }
+
+header a:first-child {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+header a:first-child:hover {
+  text-decoration: underline;
+}
