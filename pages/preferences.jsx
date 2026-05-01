@@ -54,7 +54,7 @@ export default function Preferences({ user, isLoggedIn }) {
         <h1>Your Preferences</h1>
 
         <section>
-          <h2>Topics</h2>
+          <h2>Select a topic below</h2>
           <div>
             {AVAILABLE_TOPICS.map((topic) => (
               <label key={topic}>
@@ -77,7 +77,7 @@ export default function Preferences({ user, isLoggedIn }) {
               value={state.keywordInput}
               onChange={(e) => setKeywordInput(e.target.value)}
               onKeyDown={(e) => handleKeyPress(e, addKeyword)}
-              placeholder="e.g. artificial intelligence"
+              placeholder="World Events, etc."
             />
             <button onClick={addKeyword}>Add</button>
           </div>
@@ -99,7 +99,7 @@ export default function Preferences({ user, isLoggedIn }) {
               value={state.sourceInput}
               onChange={(e) => setSourceInput(e.target.value)}
               onKeyDown={(e) => handleKeyPress(e, addSource)}
-              placeholder="e.g. bbc-news"
+              placeholder="CNN, etc."
             />
             <button onClick={addSource}>Add</button>
           </div>
@@ -114,7 +114,6 @@ export default function Preferences({ user, isLoggedIn }) {
         </section>
 
         <button onClick={handleSave}>Save Preferences</button>
-        {state.status && <p>{state.status}</p>}
       </main>
     </div>
   );
