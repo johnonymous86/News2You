@@ -29,6 +29,10 @@ const AVAILABLE_TOPICS = [
   "technology",
 ];
 
+function handleKeyPress(e, callback) {
+  if (e.key === "Enter") callback();
+}
+
 export default function Preferences({ user, isLoggedIn }) {
   const {
     state,
@@ -39,7 +43,6 @@ export default function Preferences({ user, isLoggedIn }) {
     removeSource,
     setKeywordInput,
     setSourceInput,
-    handleKeyPress,
     handleSave,
   } = usePreferences();
 
@@ -76,7 +79,7 @@ export default function Preferences({ user, isLoggedIn }) {
               type="text"
               value={state.keywordInput}
               onChange={(e) => setKeywordInput(e.target.value)}
-              onKeyDown={(e) => handleKeyPress()(e, addKeyword)}
+              onKeyDown={(e) => handleKeyPress(e, addKeyword)}
               placeholder="World Events, etc."
             />
             <button onClick={addKeyword}>Add</button>
