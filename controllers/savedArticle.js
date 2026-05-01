@@ -36,4 +36,4 @@ const SavedArticleSchema = new Schema({
   }
 }, { timestamps: true })
 
-export default models.SavedArticle || model('SavedArticle', SavedArticleSchema)
+export default models.SavedArticles || model('SavedArticle', SavedArticleSchema)
