@@ -1,13 +1,18 @@
 .nav {
-    background-color: blue;
-    padding: 0.75rem 2rem;
-    display: flex;
-    gap: 1.5rem;
-  }
+  background-color: gray;
+  padding: 0.75rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end;
+  height: 1rem;
+  align-items: center;
+}
   
   .nav a {
     color: white;
     text-decoration: none;
+    margin-left: 1rem;
+    padding-left: 1rem;
   }
   
   .nav a:hover {

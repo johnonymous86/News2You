@@ -32,3 +32,20 @@ header a:first-child {
 header a:first-child:hover {
   text-decoration: underline;
 }
+
+header + nav {
+  position: relative;
+  left: -2rem;
+  width: calc(100% + 4rem) !important;
+  padding-right: 4rem !important;
+}
+
+header {
+  left: -2rem;
+  padding: 0 2rem;
+}
+
+main {
+  padding: 0 2rem;
+}
+
