@@ -62,7 +62,7 @@ export default function Login(props) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to the News4You!
+          Welcome to News2You!
         </h1>
 
         <p> Log in to see your news articles

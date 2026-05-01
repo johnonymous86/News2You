@@ -9,7 +9,10 @@ export default function Header(props) {
       {props.isLoggedIn ? (
         <>
           <p>
-            <Link href="/">News2You</Link>
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+  <img src="/favicon.ico" alt="News2You logo" width={24} height={24} />
+  News2You
+</Link>
           </p>
           <div className={styles.container}>
             <p>Welcome, {props.username}!</p>

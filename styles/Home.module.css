@@ -29,7 +29,7 @@
 }
 
 .title a {
-  color: blue;
+  color: white;
   text-decoration: none;
 }
 
@@ -37,6 +37,7 @@
 .title a:focus,
 .title a:active {
   text-decoration: underline;
+  color: gray;
 }
 
 .title {
@@ -104,7 +105,7 @@
 }
 
 .card:is(:hover, :focus, :active) {
-  color: gray;
+  color: lightgray;
   border-color: white;
 }
 
