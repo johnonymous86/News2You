@@ -1,34 +1,81 @@
+# Welcome to News2You!📰
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## What does it do and how do I use it?
 
-First, run the development server:
+This app is designed as a personalized, filterable news feed that allows the user to search, filter, and save news articles according to their preference. 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+After creating a user account, navigate to the the **Preferences** page and select your preference parameters. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To narrow down the types of articles that show up in your feed, users can select from 7 preferences (business, entertainment, general, health, science, sports, and technology). 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Selecting one of these fields will pull down articles that are tagged according to the selected topic. 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+For a more focused search, users can add keywords to their search (such as "gas prices") and specify the source of the news article (CNN, etc.). After setting keywords and sources, users can save or alter their preferences and the data will persist between sessions.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+After selecting preferences, the user will be directed to their **Feed** which will show their filtered news preferences. On the feed, users can select articles that they want to save to read later. This data will also persist between sessions. 
 
-## Learn More
+**Note** Nothing will show up in your feed if you haven't set any preferences! Make sure you do that first!
 
-To learn more about Next.js, take a look at the following resources:
+## Where does the news come from?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+News2You pulls an API feed from [NewsAPI.org](newsapi.org). This API was selected because of the filtering options for keywords, sources, and categories.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## How does it work?
 
-## Deploy on Vercel
+The News2You stack sits on a MongoDB database hosted on [MongoDB Atlas](mongodb.com) using the aforementioned NewsAPI. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The frontend uses Next.js as a page router as well as react 18. Some CSS styling has been applied though the alloted development timeframe did not allow for comprehensive styling. As such, the app layout follows very simple layout/design conventions. *Every effort has been made to minimize changes to the provided starter files.*
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The backend of News2You uses Next.js API routes. Session and authorization management are through iron-session with bcrypt password hashing. 
+
+## Project Structure
+
+-components/
+  header/  ...site header with login/logout
+  nav/     ...main navigation bar
+controllers/
+  cont_article.js   ...saved article handler functions
+  preferences.js    ...preferences handler functions
+db/
+  models/
+    user.js  ...user schema
+    preference.js  ...preference schema
+    model_articles.js  ...saved article schema
+  connection.js        ...MongoDB connection
+  auth.js              ...login logic
+  user.js              ...user creation
+  preference.js        ...preference queries
+  dbArticles.js        ...saved article queries
+hooks/
+  useLogout.js         ...logout hook
+  usePreferences.js    ...preferences state management
+pages/
+  api/
+    auth/[action].js   ...login, logout, signup
+    feed.js            ...fetches news from NewsAPI
+    preferences/       ....GET and POST preferences
+    saved/             ...GET, POST, PUT, DELETE saved articles
+  index.jsx            ...home page
+  login.jsx            ...login page
+  signup.jsx           ...signup page
+  feed.jsx             ...news feed page
+  preferences.jsx      ...user preferences page
+  saved.jsx            ...saved articles page
+
+## Want to contribute?
+If you are interested in contributing to this project, please be advised that you will need a **.env** file in the root directory using the following three variables:
+
+-MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>
+-IRON_PASS=<random_string_at_least_32_characters>
+-NEWS_API_KEY=<your_newsapi_key>
+
+## Run this app locally
+Running this app locally requires [Docker](docker.com).
+
+Run **npm run dev** to start the local MongoDB container and the Next.js server. 
+
+The app will run at (http://localhost:3000).
+
+**Note:** a MongoDB Atlas connection string is necessary for persistent data across sessions.
