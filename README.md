@@ -57,12 +57,12 @@ The backend of News2You uses Next.js API routes. Session and authorization manag
    - feed.js            ...fetches news from NewsAPI
    - preferences/       ....GET and POST preferences
    - saved/             ...GET, POST, PUT, DELETE saved articles
- - index.jsx            ...home page
- - login.jsx            ...login page
- - signup.jsx           ...signup page
- - feed.jsx             ...news feed page
- - preferences.jsx      ...user preferences page
- - saved.jsx            ...saved articles page
+  - index.jsx            ...home page
+  - login.jsx            ...login page
+  - signup.jsx           ...signup page
+  - feed.jsx             ...news feed page
+  - preferences.jsx      ...user preferences page
+  - saved.jsx            ...saved articles page
 
 ## Want to contribute?
 If you are interested in contributing to this project, please be advised that you will need a **.env** file in the root directory using the following three variables:
