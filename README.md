@@ -32,44 +32,44 @@ The backend of News2You uses Next.js API routes. Session and authorization manag
 
 ## Project Structure
 
--components/
-  header/  ...site header with login/logout
-  nav/     ...main navigation bar
-controllers/
-  cont_article.js   ...saved article handler functions
-  preferences.js    ...preferences handler functions
-db/
-  models/
-    user.js  ...user schema
-    preference.js  ...preference schema
-    model_articles.js  ...saved article schema
-  connection.js        ...MongoDB connection
-  auth.js              ...login logic
-  user.js              ...user creation
-  preference.js        ...preference queries
-  dbArticles.js        ...saved article queries
-hooks/
-  useLogout.js         ...logout hook
-  usePreferences.js    ...preferences state management
-pages/
-  api/
-    auth/[action].js   ...login, logout, signup
-    feed.js            ...fetches news from NewsAPI
-    preferences/       ....GET and POST preferences
-    saved/             ...GET, POST, PUT, DELETE saved articles
-  index.jsx            ...home page
-  login.jsx            ...login page
-  signup.jsx           ...signup page
-  feed.jsx             ...news feed page
-  preferences.jsx      ...user preferences page
-  saved.jsx            ...saved articles page
+- components/
+  - header/  ...site header with login/logout
+  - nav/     ...main navigation bar
+- controllers/
+  - cont_article.js   ...saved article handler functions
+  - preferences.js    ...preferences handler functions
+- db/
+ - models/
+   - user.js  ...user schema
+   - preference.js  ...preference schema
+   - model_articles.js  ...saved article schema
+ - connection.js        ...MongoDB connection
+ - auth.js              ...login logic
+ - user.js              ...user creation
+ - preference.js        ...preference queries
+ - dbArticles.js        ...saved article queries
+- hooks/
+ - useLogout.js         ...logout hook
+ - usePreferences.js    ...preferences state management
+- pages/
+ - api/
+   - auth/[action].js   ...login, logout, signup
+   - feed.js            ...fetches news from NewsAPI
+   - preferences/       ....GET and POST preferences
+   - saved/             ...GET, POST, PUT, DELETE saved articles
+ - index.jsx            ...home page
+ - login.jsx            ...login page
+ - signup.jsx           ...signup page
+ - feed.jsx             ...news feed page
+ - preferences.jsx      ...user preferences page
+ - saved.jsx            ...saved articles page
 
 ## Want to contribute?
 If you are interested in contributing to this project, please be advised that you will need a **.env** file in the root directory using the following three variables:
 
--MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>
--IRON_PASS=<random_string_at_least_32_characters>
--NEWS_API_KEY=<your_newsapi_key>
+- MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>
+- IRON_PASS=<random_string_at_least_32_characters>
+- NEWS_API_KEY=<your_newsapi_key>
 
 ## Run this app locally
 Running this app locally requires [Docker](docker.com).
