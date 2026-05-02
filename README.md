@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## What does it do and how do I use it?
 
-This app is designed as a personalized, filterable news feed that allows the user to search, filter, and save news articles according to their preference. 
+This app is designed as a personalized, filterable news feed that allows the user to search, filter, and save news articles according to their preference. The inspiration from the app derives from the often overwhelming feeling that one gets when visiting modern news websites. We attempted to create a more curated way to experience world events. 
 
 After creating a user account, navigate to the the **Preferences** page and select your preference parameters. 
 
