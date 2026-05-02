@@ -49,8 +49,8 @@ The backend of News2You uses Next.js API routes. Session and authorization manag
  - preference.js        ...preference queries
  - dbArticles.js        ...saved article queries
 - hooks/
- - useLogout.js         ...logout hook
- - usePreferences.js    ...preferences state management
+  - useLogout.js         ...logout hook
+  - usePreferences.js    ...preferences state management
 - pages/
  - api/
    - auth/[action].js   ...login, logout, signup
